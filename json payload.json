@@ -1,0 +1,28 @@
+
+[
+    {
+        "url": "http://localhost:3000/api/auth/register",
+        "register_payload": {
+            "name": "Vinod Pawar",
+            "password": "123456",
+            "email": "vwsdddeede@demotest.co",
+            "username": "vinodbhau",
+            "status": "ACTIVE"
+        }
+    },
+    {
+        "url": "http: //localhost:3000/api/auth/login",
+        "login_payload": {
+            "username": "vinodbhau",
+            "password": "123456"
+        }
+    },
+    {
+        "url": "http://localhost:3000/api/auth/uploadBankStatementUser",
+        "bank_payload": {
+            "user_id": "cb9493e0-1150-11eb-99ea-b59168330d59",
+            "accountNumber": 64739305,
+            "csv": "FILE UPLOAD"
+        }
+    }
+]
