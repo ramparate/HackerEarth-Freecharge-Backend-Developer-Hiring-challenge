@@ -30,10 +30,6 @@ app.get('/',(req,res)=>{
   });
 });
 
-// var UserController = require(__root + 'user/UserController');
-// app.use('/api/users', UserController);
-
 var AuthController = require(__root + 'auth/AuthController');
 app.use('/api/auth', AuthController);
-
 module.exports = app;

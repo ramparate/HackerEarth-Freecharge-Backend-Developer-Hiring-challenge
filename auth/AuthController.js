@@ -9,12 +9,9 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 var User = require('../user/User');
 var Bank=require('../user/bankTransaction');
-/**
- * Configure JWT
- */
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
-var config = require('../config/config'); // get config file
+var config = require('../config/config'); 
 
 router.post('/login', function (req, res) {
   let p = req.body
