@@ -184,5 +184,23 @@ router.post('/uploadBankStatementUser', upload.uploads.single('csv'), (req, res)
     res.json(results);
   });
 });
-
+router.get('/tokenverify', VerifyToken, function (req, res, next) {
+  User.findOne({ username: req.body.username }, function (err, user) {
+    if (err) {
+      return res.status(500).send('Error on the server.');
+    }
+    if (!user) {
+      return res.status(404).send({ msg: "Upload csv file." });
+    }
+    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordIsValid) {
+      return res.status(404).send({ msg: "User Email or Password Incorrect" });
+    }
+    var token = jwt.sign({ id: user._id }, config.secret, {
+      expiresIn: 86400
+    });
+    let userDetails = { accountNumber: user.accountNumber, name: user.name, user: user.user_id }
+    res.status(200).send({ userDetailsInfos: userDetails, auth: true, token: token });
+  });
+});
 module.exports = router;
