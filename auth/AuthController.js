@@ -85,54 +85,6 @@ router.post('/register', function (req, res) {
       }
     });
 });
-
-router.get('/me',function(req, res) {
-  async.waterfall([
-    function (callback) {
-      let findObj = {
-        user_id: req.body.user_id
-      }
-      Bank.find(findObj,{_id:0,__v:0}, function (err, result) {
-        if (err) {
-          callback(null, result);
-        } else {
-          callback(null, result);
-        }
-      })
-        .lean();
-    },
-    function (value, callback) {
-      groupKey = 0;
-      groups = value.reduce(function (r, o) {
-        var m = o.Date.split(('/'))[0];
-        (r[m]) ? r[m].data.push(o) : r[m] = { group: String(groupKey++), data: [o] };
-        return r;
-      }, {});
-      var result = Object.keys(groups).map(function(k){ return groups[k]; });
-      let totalBalance=0
-      let monthlyTotalBalance=0
-      result.forEach(function (item) {
-          if (item && item.data.length>0){
-            item.data.forEach(function(ele) {
-              if (ele && ele.Deposit){
-                totalBalance=totalBalance+ele.Deposit
-              }
-              if (ele && ele.Closing_Balance){
-                monthlyTotalBalance=monthlyTotalBalance+parseInt(ele.Closing_Balance)
-              }
-            });
-          }
-        });
-        let avgMonthlyBalance=monthlyTotalBalance/12
-        var percentAsDecimal = (avgMonthlyBalance / 100);
-        let creditLimit=percentAsDecimal*20
-      callback(null, value);
-    }
-  ], function (err, results) {
-    res.json(results);
-  });
-});
-
   
 router.post('/uploadBankStatement', upload.uploads.single('csv'), (req, res) => {
   csv()
