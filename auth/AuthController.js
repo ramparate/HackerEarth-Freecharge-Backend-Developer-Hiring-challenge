@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var async = require("async");  
-var csv         = require('csvtojson');  
+var async = require("async");
+var csv = require('csvtojson');
 var VerifyToken = require('./VerifyToken');
 var upload = require('../config/upload');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 var User = require('../user/User');
-var Bank=require('../user/bankTransaction');
+var Bank = require('../user/bankTransaction');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
-var config = require('../config/config'); 
+var config = require('../config/config');
 
 router.post('/login', function (req, res) {
   let p = req.body
@@ -38,7 +38,7 @@ router.post('/login', function (req, res) {
   });
 });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', function (req, res) {
   res.status(200).send({ auth: false, token: null });
 });
 
@@ -71,7 +71,7 @@ router.post('/register', function (req, res) {
       }
       else {
         let userObj = {
-          user:user.user_id,
+          user: user.user_id,
           name: user.name,
           username: user.username,
           accountNumber: user.accountNumber,
@@ -82,7 +82,7 @@ router.post('/register', function (req, res) {
       }
     });
 });
-  
+
 router.post('/uploadBankStatement', upload.uploads.single('csv'), (req, res) => {
   csv()
     .fromFile(req.file.path)
@@ -103,7 +103,7 @@ router.post('/uploadBankStatement', upload.uploads.single('csv'), (req, res) => 
         }
       });
     });
-});  
+});
 
 router.post('/uploadBankStatementUser', upload.uploads.single('csv'), (req, res) => {
   async.waterfall([
@@ -167,10 +167,10 @@ router.post('/uploadBankStatementUser', upload.uploads.single('csv'), (req, res)
         let avgMonthlyBalance = monthlyTotalBalance / 12
         var percentAsDecimal = (avgMonthlyBalance / 100);
         let creditLimit = percentAsDecimal * 20
-        avgMonthlyBalance=avgMonthlyBalance.toFixed(2)
-        creditLimit=creditLimit.toFixed(2)
+        avgMonthlyBalance = avgMonthlyBalance.toFixed(2)
+        creditLimit = creditLimit.toFixed(2)
         let AccountObj = {
-          "recordMsg":"All Record Inserted",
+          "recordMsg": "All Record Inserted",
           avgMonthlyBalance,
           creditLimit
         }
@@ -183,6 +183,6 @@ router.post('/uploadBankStatementUser', upload.uploads.single('csv'), (req, res)
   ], function (err, results) {
     res.json(results);
   });
-});  
+});
 
 module.exports = router;
