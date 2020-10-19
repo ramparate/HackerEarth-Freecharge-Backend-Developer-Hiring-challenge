@@ -3,6 +3,7 @@ var app = express();
 var db = require('./config/db');
 var path = require('path');
 var User = require('./user/User');
+var Bank = require('./user/bankTransaction');
 global.__root   = __dirname + '/'; 
 app.set('view engine','ejs');
 // app.use(bodyParser.urlencoded({extended:false}));
@@ -16,37 +17,30 @@ app.get('/',(req,res)=>{
            console.log(err);
        }else{
             if(data!=''){
-              // var c = 0;
-              // data.forEach(function (item) {
-              //   c += 1
-              //   item.cnt=c;
-              // });
+              console.log(data);
               temp = JSON.stringify(data)
                 res.render('demo',{data1:temp});
             }else{
                 res.render('demo',{data1:[]});
             }
        }
-  });
+  }).lean();
 });
 app.get('/addfiles',(req,res)=>{
-  User.find((err,data)=>{
+  Bank.find((err,data)=>{
+    console.log(">>>>>>>>>",err,data)
        if(err){
            console.log(err);
        }else{
             if(data!=''){
-              // var c = 0;
-              // data.forEach(function (item) {
-              //   c += 1
-              //   item.cnt=c;
-              // });
+              console.log(data);
               temp = JSON.stringify(data)
                 res.render('addRecords',{data1:temp});
             }else{
                 res.render('addRecords',{data1:[]});
             }
        }
-  });
+  }).lean();
 });
 
 var AuthController = require(__root + 'auth/AuthController');
