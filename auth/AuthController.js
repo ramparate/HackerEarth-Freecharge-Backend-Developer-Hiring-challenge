@@ -92,14 +92,16 @@ router.post('/uploadBankStatement', upload.uploads.single('csv'), (req, res) => 
           item.Closing_Balance = item['Closing Balance']
         }
         item.status = "ACTIVE",
-          item.user_id = req.body.user_id,
-          item.accountNumber = req.body.accountNumber
+          item.user_id = "cb9493e0-1150-11eb-99ea-b59168330d59",
+          item.accountNumber = "64739305"
       });
       Bank.insertMany(jsonObj, (err, data) => {
+        console.log(err, data);
         if (err) {
           res.status(400).send({ "msg": "Error in User" });
         } else {
-          res.status(200).send(data);
+          // res.render('/addfiles');
+          res.redirect("/addfiles");
         }
       });
     });
