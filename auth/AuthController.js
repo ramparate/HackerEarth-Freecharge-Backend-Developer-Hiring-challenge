@@ -96,11 +96,9 @@ router.post('/uploadBankStatement', upload.uploads.single('csv'), (req, res) => 
           item.accountNumber = "64739305"
       });
       Bank.insertMany(jsonObj, (err, data) => {
-        console.log(err, data);
         if (err) {
           res.status(400).send({ "msg": "Error in User" });
         } else {
-          // res.render('/addfiles');
           res.redirect("/addfiles");
         }
       });

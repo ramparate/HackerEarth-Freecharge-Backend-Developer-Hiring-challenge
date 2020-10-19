@@ -1,15 +1,17 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HackerEarth’s Hackathons, Programming Challenges (2020)</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i|Rubik:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <script src="https://cdn.zinggrid.com/canary/zinggrid-canary.min.js" defer></script>  
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <style>
-          .zg-body {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HackerEarth’s Hackathons, Programming Challenges (2020)</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i|Rubik:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script src="https://cdn.zinggrid.com/canary/zinggrid-canary.min.js" defer></script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <style>
+    .zg-body {
       padding-top: 50px;
       font-family: 'Rubik', sans-serif;
       background: url('https://firebasestorage.googleapis.com/v0/b/zinggrid-examples.appspot.com/o/water-levels%2Fweather-cooler.png?alt=media&token=5e6df3b4-1089-47c5-9fea-f191206bbc73');
@@ -130,60 +132,52 @@
     zing-grid[loading] {
       height: 5462px;
     }
-        table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-        }
-        
-        td, th {
-          border: 1px solid #dddddd;
-          text-align: left;
-          padding: 8px;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #dddddd;
-        }
-        </style>
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
     <div class="container">
-      <a class="navbar-brand" href="#">HackerEarth’s Hackathons, Programming Challenges</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+      <a class="navbar-brand" href="/">HackerEarth’s Hackathons, Programming Challenges</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-                  <span class="sr-only">(current)</span>
-                </a>
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="/addfiles">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="/aboutus">About</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-    <div class="container">
-        <div class=" nav justify-content-center" style="margin-top:100px;">
-         <!-- <div class="card border-warning mb-3 " style="max-width: 20rem;">
-                <div class="card-header"><h5>Upload csv file</h5></div>
-                <div class="card-body">
-                        <form action="/" method="post" enctype="multipart/form-data">
-                            <input type="file" name="csv"><br><br>
-                         <div class="text-center"><button type="submit" class="btn btn-lg btn-primary">submit</button></div>   
-                        </form>
-                </div>
-          </div> -->
-    </div>
-    <br>
+  <div class="container">
     <%if(data1){%>
     <div>
       <zing-grid layout="row" layout-controls="disabled" sort pager page-size-options="25,50,100,200">
@@ -192,7 +186,8 @@
           <h1>HackerEarth’s Hackathons, Programming Challenges (2020).</h1>
           <p><em>Freecharge Backend Developer Hiring challenge.</em>
             <br>
-            <a href="https://www.hackerearth.com/challenges/" target="_blank">View Source <i class="far fa-arrow-alt-circle-right"></i></a></p>
+            <a href="https://www.hackerearth.com/challenges/" target="_blank">View Source <i
+                class="far fa-arrow-alt-circle-right"></i></a></p>
         </zg-caption>
         <zg-colgroup>
           <zg-column index="name" renderer="renderNull" header="Full Name">
@@ -216,7 +211,7 @@
         window.addEventListener('load', () => {
         });
       </script>
-       
+
     </div>
     <%}%>
 <br>
