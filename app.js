@@ -29,6 +29,25 @@ app.get('/',(req,res)=>{
        }
   });
 });
+app.get('/addfiles',(req,res)=>{
+  User.find((err,data)=>{
+       if(err){
+           console.log(err);
+       }else{
+            if(data!=''){
+              // var c = 0;
+              // data.forEach(function (item) {
+              //   c += 1
+              //   item.cnt=c;
+              // });
+              temp = JSON.stringify(data)
+                res.render('addRecords',{data1:temp});
+            }else{
+                res.render('addRecords',{data1:[]});
+            }
+       }
+  });
+});
 
 var AuthController = require(__root + 'auth/AuthController');
 app.use('/api/auth', AuthController);
