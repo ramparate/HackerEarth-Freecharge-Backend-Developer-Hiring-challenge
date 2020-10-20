@@ -10,38 +10,10 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.get('/api', function (req, res) {
   res.status(200).send('API works.');
 });
-app.get('/', (req, res) => {
-  User.find((err, data) => {
-    if (err) {
-      res.render('demo', { data1: [] });
-    } else {
-      if (data != '') {
-        temp = JSON.stringify(data)
-        res.render('demo', { data1: temp });
-      } else {
-        res.render('demo', { data1: [] });
-      }
-    }
-  }).lean();
-});
-app.get('/addfiles', (req, res) => {
-  Bank.find((err, data) => {
-    if (err) {
-      res.render('demo', { data1: [] });
-    } else {
-      if (data != '') {
-        temp = JSON.stringify(data)
-        res.render('addRecords', { data1: temp });
-      } else {
-        res.render('addRecords', { data1: [] });
-      }
-    }
-  }).lean();
-});
-app.get('/aboutus', (req, res) => {
-  res.render('aboutus');
-});
+
 
 var AuthController = require(__root + 'auth/AuthController');
 app.use('/api/auth', AuthController);
+var userController = require(__root +'./userController/userController');
+app.use('/', userController);
 module.exports = app;
