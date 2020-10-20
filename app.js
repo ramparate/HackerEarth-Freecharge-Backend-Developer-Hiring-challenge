@@ -1,9 +1,12 @@
 var express = require('express');
 var app = express();
 var db = require('./config/db');
+var bodyParser = require('body-parser');
 var path = require('path');
 var User = require('./user/User');
 var Bank = require('./user/bankTransaction');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 global.__root = __dirname + '/';
 app.set('view engine', 'ejs');
 app.use(express.static(path.resolve(__dirname, 'public')));

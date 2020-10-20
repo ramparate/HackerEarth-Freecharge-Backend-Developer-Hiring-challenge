@@ -43,14 +43,13 @@ router.get('/logout', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-  let p = req.body
-  for (var key in p) {
-    if (p.hasOwnProperty(key)) {
-      if (p[key] == "" || p[key] == null || p[key] == undefined) {
-        return res.status(400).send({ "msg": "Missing Params." });
-      }
-    }
-  }
+  // for (var key in p) {
+  //   if (p.hasOwnProperty(key)) {
+  //     if (p[key] == "" || p[key] == null || p[key] == undefined) {
+  //       return res.status(400).send({ "msg": "Missing Params." });
+  //     }
+  //   }
+  // }
   var len = 8;
   let accountNumber = parseInt((Math.random() * 9 + 1) * Math.pow(10, len - 1), 10);
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -63,23 +62,7 @@ router.post('/register', function (req, res) {
     accountNumber: accountNumber
   },
     function (err, user) {
-      if (err && err.code == 11000) {
-        return res.status(500).send({ msg: "Username or Email Already exist." });
-      }
-      if (err) {
-        res.status(500).send({ msg: "There was a problem registering the user." });
-      }
-      else {
-        let userObj = {
-          user: user.user_id,
-          name: user.name,
-          username: user.username,
-          accountNumber: user.accountNumber,
-          email: user.email,
-          status: user.status
-        }
-        res.status(200).send(userObj);
-      }
+      res.redirect("/addfiles");
     });
 });
 
