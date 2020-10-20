@@ -41,7 +41,7 @@ router.get('/aboutus', (req, res) => {
 });
 
 router.get('/registerUser', (req, res) => {
-  res.render('register');
+  res.render('login');
 });
 
 
