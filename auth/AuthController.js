@@ -12,6 +12,8 @@ var Bank = require('../user/bankTransaction');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config/config');
+var flash = require('flash-express')
+router.use(flash());
 
 router.post('/login', function (req, res) {
   let p = req.body
@@ -62,7 +64,9 @@ router.post('/register', function (req, res) {
     accountNumber: accountNumber
   },
     function (err, user) {
-      res.redirect("/addfiles");
+      // req.flash('success', 'user succesfulyl registered')
+      //toastjs
+      res.redirect("/");
     });
 });
 
