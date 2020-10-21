@@ -40,7 +40,7 @@ router.get('/aboutus', (req, res) => {
   res.render('aboutus');
 });
 
-router.get('/registerUser', (req, res) => {
+router.get('/loginUser', (req, res) => {
   res.render('login');
 });
 

@@ -13,17 +13,10 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config/config');
 var flash = require('flash-express')
+var url = require('url'); 
 router.use(flash());
 
-router.post('/login', function (req, res) {
-  let p = req.body
-  for (var key in p) {
-    if (p.hasOwnProperty(key)) {
-      if (p[key] == "" || p[key] == null || p[key] == undefined) {
-        return res.status(400).send({ "msg": "Missing Params." });
-      }
-    }
-  }
+router.post('/login',function (req, res,next) {
   User.findOne({ username: req.body.username }, function (err, user) {
     if (err) return res.status(500).send('Error on the server.');
     if (!user) return res.status(404).send({ msg: "Upload csv file." });
@@ -37,6 +30,7 @@ router.post('/login', function (req, res) {
     });
     let userDetails = { accountNumber: user.accountNumber, name: user.name, user: user.user_id }
     res.status(200).send({ userDetailsInfos: userDetails, auth: true, token: token });
+   
   });
 });
 
