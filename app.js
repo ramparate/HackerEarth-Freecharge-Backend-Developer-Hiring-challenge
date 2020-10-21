@@ -1,5 +1,14 @@
 var express = require('express');
+const helmet = require('helmet'); 
 var app = express();
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    // frameguard: false
+  })
+);
+
+
 var db = require('./config/db');
 var bodyParser = require('body-parser');
 var path = require('path');
