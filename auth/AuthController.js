@@ -35,7 +35,7 @@ router.post('/login',function (req, res,next) {
       } else {
         if (data != '') {
           temp = JSON.stringify(data)
-          res.render('addRecords', { data1: temp });
+          res.render('addRecords', { data1: temp,userDetails:userDetails });
         } else {
           res.render('addRecords', { data1: [] });
         }
