@@ -29,7 +29,19 @@ router.post('/login',function (req, res,next) {
       expiresIn: 86400 // expires in 24 hours
     });
     let userDetails = { accountNumber: user.accountNumber, name: user.name, user: user.user_id }
-    res.status(200).send({ userDetailsInfos: userDetails, auth: true, token: token });
+    // res.status(200).send({ userDetailsInfos: userDetails, auth: true, token: token });
+    User.find({user_id:user.user_id},(err, acData) => {
+      if (err) {
+        res.render('demo', { data1: [] });
+      } else {
+        if (data != '') {
+          temp = JSON.stringify(acData)
+          res.render('demo', { data1: temp });
+        } else {
+          res.render('demo', { data1: [] });
+        }
+      }
+    }).lean();
    
   });
 });

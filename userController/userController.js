@@ -9,7 +9,7 @@ router.use(bodyParser.json());
 var User = require('../user/User');
 var Bank = require('../user/bankTransaction');
 router.get('/', (req, res) => {
-  User.find((err, data) => {
+  User.find({},(err, data) => {
     if (err) {
       res.render('demo', { data1: [] });
     } else {
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
   }).lean();
 });
 router.get('/addfiles', (req, res) => {
-  Bank.find((err, data) => {
+  Bank.find({},(err, data) => {
     if (err) {
       res.render('demo', { data1: [] });
     } else {
