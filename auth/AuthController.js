@@ -29,16 +29,15 @@ router.post('/login',function (req, res,next) {
       expiresIn: 86400 // expires in 24 hours
     });
     let userDetails = { accountNumber: user.accountNumber, name: user.name, user: user.user_id }
-    // res.status(200).send({ userDetailsInfos: userDetails, auth: true, token: token });
-    User.find({user_id:user.user_id},(err, acData) => {
+    Bank.find({user_id:user.user_id},(err, data) => {
       if (err) {
         res.render('demo', { data1: [] });
       } else {
         if (data != '') {
-          temp = JSON.stringify(acData)
-          res.render('demo', { data1: temp });
+          temp = JSON.stringify(data)
+          res.render('addRecords', { data1: temp });
         } else {
-          res.render('demo', { data1: [] });
+          res.render('addRecords', { data1: [] });
         }
       }
     }).lean();
@@ -51,13 +50,6 @@ router.get('/logout', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-  // for (var key in p) {
-  //   if (p.hasOwnProperty(key)) {
-  //     if (p[key] == "" || p[key] == null || p[key] == undefined) {
-  //       return res.status(400).send({ "msg": "Missing Params." });
-  //     }
-  //   }
-  // }
   var len = 8;
   let accountNumber = parseInt((Math.random() * 9 + 1) * Math.pow(10, len - 1), 10);
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -70,8 +62,6 @@ router.post('/register', function (req, res) {
     accountNumber: accountNumber
   },
     function (err, user) {
-      // req.flash('success', 'user succesfulyl registered')
-      //toastjs
       res.redirect("/");
     });
 });
